@@ -2,14 +2,14 @@
 // A timer is displayed
 // Time will count down
 
-var timer = 10;
+var timer = 60;
 var intervalNum;
 var a,b,c;
 var correctResponse = 0;
 var incorrectResponse = 0;
-var questionList = ["first questiuon", "second question"];
-var choiceList = ["a", "b", "c","d"];
-var answerList = [1,2];
+var questionList = ["Question One: How many states are there in the United States? The choices are as follows: 13, 25, 50, 51 respectively", "Question Two: What state has the tallest moutains in the United States? The choices are as follows: Washington, Alaska, Colorodo, California", "Question three: What is Washington state's nickname? The choices are as follows: The Evergreen State, The Giving State, The Emerald State, The Needle"];
+var choiceList = ["Choice 1", "Choice 2", "Choice 3","Choice 4"];
+var answerList = [1,2,1,4];
 
 $('#start').on("click",function() {
     //Clears the div of previous content
@@ -49,40 +49,26 @@ function setUpForm (){
         var questionDiv = formBox.append("<div class='form-check form-check-inline'>");
         questionDiv.append('<p>'+questionList[i]+'</p>');
 
+        // loop to create choices
         for (let j = 0; j < choiceList.length; j++) {
-            var choiceDiv = questionDiv.append('<div class="form-check form-check-inline">');
-            var choice = choiceDiv.append('<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" >');
+            var choiceDiv = questionDiv.append('<div class="form-check form-check-inline" style="margin-right:30px;">');
+            var choice = choiceDiv.append('<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=j+1 >');
             choice.append('<label class="form-check-label" for="inlineRadio1">'+choiceList[j]+'</label>')
         }
     }
-
 }
-
-
-// loop through to make questions 
-// loop through to reference answers
-
-
-// <div class="form-check form-check-inline">
-//   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-//   <label class="form-check-label" for="inlineRadio2">2</label>
-// </div>
-
-// <div class="form-check form-check-inline">
-//   <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3" disabled>
-//   <label class="form-check-label" for="inlineRadio3">3 (disabled)</label>
-// </div> 
-
 
 
 function checkAnswer (){
     // loop through and check the responses
+    // if the response === to the answerList then increment correct response
+    // else increment the incorrect response
 }
 
 // function called when the timer is 0 
 function timeUp (){
     //clear out question form
-    //$('#bodyParagraph').empty();
+    $('#bodyParagraph').empty();
 
     // end of the timer
     a.html("TIME IS UP");
