@@ -3,19 +3,27 @@
   <head>
     <meta charset="UTF-8">
     <title>Trivia Game</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- css sheet -->
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
 
-    <div id = "main">
+    <!-- header of the page -->
+    <div id = "main" class = "container">
         <h1> Trivia Time </h1>
         <p id = "main-text"></p>
-
-
     </div>
-    <!-- Have a start button to click -->
-    <!-- create a center page with background -->
+
+    <!-- div for the timer / start button -->
+    <div id= "start-timer">
+      <h3>When you are ready to start the quiz, click start</h3>
+      <button id= "start" type="button" class="btn btn-primary btn-lg"><strong>START</strong></button>
+    </div>
+
+    <!-- div for the start button -->
+    <div id = "bodyParagraph"></div>
 
   </body>
     <!-- jQuery -->

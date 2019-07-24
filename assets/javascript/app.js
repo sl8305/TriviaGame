@@ -1,5 +1,45 @@
-// create a function for the timer // starts on click action of the button
 
+// When the start button is clicked the button and message are replaced
+// A timer is displayed
+// Time will count down
+
+var timer = 30;
+var intervalNum;
+var p;
+
+$('#start').on("click",function() {
+    //Clears the div of previous content
+    $('#start-timer').empty();
+    intervalNum = setInterval(decrement,1000);
+
+    p = $('#start-timer').append("<p>");
+    p.html(timer);
+
+    //Display a timer
+    
+    
+
+
+    // call the countDownfunction 
+})
+
+function decrement(){
+    // decrease timer by 1
+    timer --;
+    // update the time on the page
+    p.html(timer);
+
+    // When the timer = 0 stop the countdown
+    if (timer === 0) {
+        clearInterval(intervalNum);
+        console.log("TIME IS UP");
+    }
+}
+
+// create a function to count down the time
+function countDown (){
+
+}
 
 
 function checkAnswer (){
@@ -22,4 +62,4 @@ function timeUp (){
     $('#main-text').append("Number of incorrect answers: " + incorrectResponse);
 }
 
-timeUp();
+//timeUp();
