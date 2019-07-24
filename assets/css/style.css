@@ -7,8 +7,3 @@ body {
     color: lightskyblue;
     background: black;
 }
-
-label, input {
-    margin:10px;
-    padding: 10px, 20px, 10px, 20px;
-}

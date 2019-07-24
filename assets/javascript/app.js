@@ -7,7 +7,7 @@ var intervalNum;
 var a,b,c;
 var correctResponse = 0;
 var incorrectResponse = 0;
-var questionList = ["Question One: How many states are there in the United States? The choices are as follows: 13, 25, 50, 51 respectively", "Question Two: What state has the tallest moutains in the United States? The choices are as follows: Washington, Alaska, Colorodo, California", "Question three: What is Washington state's nickname? The choices are as follows: The Evergreen State, The Giving State, The Emerald State, The Needle"];
+var questionList = ["Question One: How many states are there in the United States? The choices are as follows: 13, 25, 50, 51 respectively", "Question Two: What state has the tallest moutains in the United States? The choices are as follows: Washington, Alaska, Colorodo, California", "Question Three: What is Washington state's nickname? The choices are as follows: The Evergreen State, The Giving State, The Emerald State, The Needle"];
 var choiceList = ["Choice 1", "Choice 2", "Choice 3","Choice 4"];
 var answerList = [1,2,1,4];
 
@@ -22,7 +22,7 @@ $('#start').on("click",function() {
     a.html("Time left: " + timer);
 
     setUpForm();
-})
+});
 
 function decrement(){
     // decrease timer by 1
@@ -32,8 +32,6 @@ function decrement(){
 
     // When the timer = 0 stop the countdown
     if (timer === 0) {
-        // clear the decrement
-        clearInterval(intervalNum);
         // call the time up function 
         timeUp();
     }
@@ -42,22 +40,38 @@ function decrement(){
 // function to set up the input form
 function setUpForm (){
     // adding the form div to the div called bodyParagraph
-    var formBox = $("#bodyParagraph").append("<div>");
+    var questionBox = $("<div id='questionBox'></div>");
+    questionBox.appendTo("#bodyParagraph");
 
-    for (let i = 0; i <questionList.length; i++) {
+    for (let i = 0; i < questionList.length; i++) {
         // loop to create question
-        var questionDiv = formBox.append("<div class='form-check form-check-inline'>");
-        questionDiv.append('<p>'+questionList[i]+'</p>');
+        var questionDiv = $("<div class='form-check form-check-inline'></div>");
+        $('<p>'+questionList[i]+'</p>').appendTo(questionDiv);
+        questionDiv.appendTo(questionBox);
 
+        var choiceBox = $("<div></div>");
+        var choiceBoxName = "inlineRadioOptions";
         // loop to create choices
         for (let j = 0; j < choiceList.length; j++) {
-            var choiceDiv = questionDiv.append('<div class="form-check form-check-inline" style="margin-right:30px;">');
-            var choice = choiceDiv.append('<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value=j+1 >');
-            choice.append('<label class="form-check-label" for="inlineRadio1">'+choiceList[j]+'</label>')
+            var choiceDiv = $('<div class="form-check form-check-inline" style="margin-right:30px;">');
+            var choice = $('<input class="form-check-input" type="radio" name="'+choiceBoxName+i+'" id="inlineRadio1" value=j+1>');
+            choice.appendTo(choiceDiv);
+            $('<label class="form-check-label" for="'+choiceBoxName+i+'">'+choiceList[j]+'</label>').appendTo(choiceDiv);
+            choiceDiv.appendTo(choiceBox);
         }
+        choiceBox.appendTo(questionBox);
     }
-}
 
+    
+    // submit button
+    var end = $("<div></div>");
+    $('<button id= "submit" type="button" class="btn btn-primary btn-lg">Submit</button>').appendTo(end);
+    end.appendTo(questionBox);
+    
+    $('#submit').on("click", function (){
+        timeUp();
+    });
+}
 
 function checkAnswer (){
     // loop through and check the responses
@@ -67,6 +81,9 @@ function checkAnswer (){
 
 // function called when the timer is 0 
 function timeUp (){
+    // clear the decrement
+    clearInterval(intervalNum);
+
     //clear out question form
     $('#bodyParagraph').empty();
 
